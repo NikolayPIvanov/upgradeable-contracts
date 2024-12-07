@@ -9,11 +9,11 @@ contract BoxV1 is UUPSUpgradeable, OwnableUpgradeable {
 
     constructor() {
         _disableInitializers();
-        __UUPSUpgradeable_init();
     }
 
-    function initialize(address initialOwner) public initializer {
-        __Ownable_init(initialOwner);
+    function initialize() public initializer {
+        __Ownable_init(msg.sender);
+        __UUPSUpgradeable_init();
     }
 
     function getNumber() external view returns (uint256) {

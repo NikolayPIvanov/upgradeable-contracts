@@ -9,14 +9,16 @@ contract BoxV2 is UUPSUpgradeable, OwnableUpgradeable {
 
     constructor() {
         _disableInitializers();
+    }
+
+    function initialize() public initializer {
+        __Ownable_init(msg.sender);
         __UUPSUpgradeable_init();
     }
 
-    function initialize(address initialOwner) public initializer {
-        __Ownable_init(initialOwner);
+    function setNumber(uint256 _number) external {
+        number = _number;
     }
-
-    function setNumber(uint256 _number) external {}
 
     function getNumber() external view returns (uint256) {
         return number;
